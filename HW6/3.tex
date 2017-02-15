@@ -1,0 +1,128 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 5}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution 3: Equivalent First Order System}
+The equivalent first order linear ODE systems, for the given higher order ODEs are as follows: 
+\subsection*{(a) Van der Pol Equation:}
+\begin{align*}
+y'' = y'(1-y^2) - y
+\end{align*}
+The equivalent first order system can be given by making the following substitution 
+\begin{align*}
+{\bf y} = 
+\begin{Bmatrix}
+y_1 \\
+y_2
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y \\
+y'
+\end{Bmatrix}
+\end{align*}
+Thus we have 
+\begin{align*}
+{\bf y}'
+=
+\begin{Bmatrix}
+y'_1\\y'_2
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y_2\\y_2(1-y^2_1)-y_1
+\end{Bmatrix}
+\end{align*}
+We can therefore rewrite the system in the following form 
+\begin{align*}
+\boxed{
+{\bf y}' = {\bf f}(t,{\bf y})\ \ \ ; \ \ \ \ {\bf y}' = \begin{Bmatrix}
+y'_1\\y'_2
+\end{Bmatrix}
+\ \ \ \ \ {\bf f}(t,{\bf y}) = \begin{Bmatrix}
+y_2\\y_2(1-y^2_1)-y_1
+\end{Bmatrix}
+}
+\end{align*} \hrule
+\subsection*{(b) Blasius Equation}
+Given ODE
+\begin{align*}
+y''' = -yy''
+\end{align*}
+We again make a similar substitution, as above, illustrated below 
+\begin{align*}
+{\bf y}
+=
+\begin{Bmatrix}
+y_1\\y_2\\y_3
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y\\y'\\y''
+\end{Bmatrix}
+\end{align*}
+Thus our equivalent first order ODE system is 
+\begin{align*}
+\boxed{
+{\bf y}'
+=
+{\bf f}(t,{\bf y}) \ \ \ \ ; {\bf y}'
+=
+\begin{Bmatrix}
+y'_1\\y'_2\\y'_3
+\end{Bmatrix}
+ \ \ \ \ \ \ {\bf f}(t,{\bf y}) = 
+\begin{Bmatrix}
+y_2\\y_3\\-y_1\cdot y_3
+\end{Bmatrix}
+}
+\end{align*}
+\subsection*{(c) Newton's Second Law-Two Body Problem}
+Given ODE system
+\begin{align*}
+\begin{Bmatrix}
+{y}''_1\\{y}''_2
+\end{Bmatrix}
+= - \frac{GM}{(y^2_1+y^2_2)^{3/2}}
+\begin{Bmatrix}
+y_1\\y_2
+\end{Bmatrix}
+\end{align*}
+Let $$ k (y_1,y_2) = \frac{GM}{(y^2_1+y^2_2)^{3/2}}$$
+Using this we make the substitution given below: 
+\begin{align*}
+{\bf y}
+=
+\begin{Bmatrix}
+y_{11}\\y_{12}\\y_{21}\\y_{22}
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y_1\\y'_1\\y_2\\y'_2
+\end{Bmatrix}
+\implies 
+{\bf y}' = 
+\begin{Bmatrix}
+y'_1\\y''_1\\y'_2\\y''_2
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y_{12}\\-ky_{11}\\y_{22}\\-ky_{21}
+\end{Bmatrix}
+\end{align*}
+Thus our corresponding linear first order system is given by 
+\begin{align*}
+\boxed{
+{\bf y}' = {\bf f}(t,{\bf y})\ \ \ ; \ \ \ \ \ {\bf y}' = \begin{Bmatrix}
+y'_{11}\\y'_{12}\\y'_{21}\\y'_{22}
+\end{Bmatrix} \ \ \ \ \ \ \ {\bf f}(t,{\bf y})
+=
+\begin{Bmatrix}
+y_{12}\\-k(y_{11},y_{21})\cdot y_{11}\\y_{22}\\-k(y_{11},y_{21})\cdot y_{21}
+\end{Bmatrix}
+}
+\end{align*}\hrule\hrule\hrule
+\end{document}
