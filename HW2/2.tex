@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.65in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{authblk}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{pgfplotstable}
+
+\titlespacing\section{10pt}{14pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{8pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\graphicspath{{Final_Project/FEMProject/Results/}}
+\title{\bf CSE 401: Numerical Analysis - Fall 2016 \\ Homework 2}
+\author{Bhavesh Shrimali (NetID: bshrima2)}
+\begin{document}
+\maketitle
+\section*{Problem 2:}
+\noindent Given system: 
+$$ f(t,{\bf x}) = x_1 \cdot t + x_2 \cdot e^t $$
+and corresponding data ($t_i$,$f_i$)
+\[
+\begin{Bmatrix}
+t_t\\t_2\\t_3
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+1\\2\\3
+\end{Bmatrix}
+\]
+\[
+\begin{Bmatrix}
+f_1\\
+f_2\\
+f_3
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+2\\3\\5
+\end{Bmatrix}
+\]
+Thus the linear least squares system can be set up as follows:
+\[
+\begin{bmatrix}
+1 & e \\
+2 & e^2 \\
+3 & e^3
+\end{bmatrix}
+\begin{Bmatrix}
+x_1\\x_2
+\end{Bmatrix}
+=
+\begin{bmatrix}
+2\\3\\5
+\end{bmatrix}
+\]
+\end{document}
