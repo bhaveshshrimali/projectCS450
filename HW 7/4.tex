@@ -1,0 +1,66 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 7}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule\hrule\hrule
+\section*{Solution 4: }
+Given PDE
+\begin{align}
+u_{t}
+=
+u_{xx}
+\end{align}\hrule
+\subsection*{Remarks: }
+\begin{itemize}
+\item The first and the second plots correspond to the Explicit Finite-Difference Scheme, i.e., FTCS (Forward Time Centered Space). The curve corresponding to the first and the second cases are as follows: 
+\begin{figure}[H]
+\includegraphics[width=7in, height=4.2in]{Fig1}
+\caption{Forward-Time-Centered-Space (FTCS) Method or Euler's method }
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=7in, height=4.5in]{Fig2}
+\caption{Forward-Time-Centered-Space (FTCS) Discretization - Coarser Step }
+\end{figure}
+\item The second plot has a coarser step size, i.e. $\Delta t_2 > \Delta t_1$, and for an explicit Finite-Difference-Discretization, {\bf the stability of the solution (which in this case can be shown to be unstable) decreases as we increase the step size}. 
+\item Moreover this is evident by the fluctuations (spikes) towards the end of the time axis. Thus {\bf increasing the step-size decreases the stability of the solution}.
+\item The stability of the Euler's method is ensured by the inequality 
+\begin{align*}
+\Delta t \leq \frac{{(\Delta x)}^2}{2c}
+\end{align*}
+But in our case we have
+\begin{align*}
+\Delta t = 0.0013\ \ ; \ \ \ \ \frac{{(\Delta x)}^2}{2c} = 1.25\ {\rm x}\ 10^{-3} \ \ ; \ \ \ \ \Delta t \nless \frac{{(\Delta x)}^2}{2c} 
+\end{align*}
+\item Hence the explicit scheme in the second case, $\Delta t = 0.0013$,is not stable whereas the one in the first case, $\Delta t = 0.0012$ is stable. 
+\end{itemize}\hrule\newpage
+\begin{itemize} 
+\item The third plot corresponds to an implicit Finite-Difference-Discretization. The implicit method,is unconditionally stable, and hence stays stable even for the coarser step. 
+\item The implicit method involves, for one space dimension, involves {\bf solving a tridiagonal linear system} at each step. Hence, by construction, it is unconditionally stable for coarser (step) sizes in time. This is reflected by the third and fourth plots given below. 
+\item The {\bf Backward Euler Method is first order accurate in time and second order in space.} 
+\begin{figure}[H]
+\includegraphics[width=7in, height=4.5in]{Fig3}
+\caption{Backward-Time-Centered-Space (BTCS) or Backward Euler (Implicit FDM) }
+\end{figure}\hrule
+\newpage\item {\bf  The Crank-Nicolson method } 
+\begin{figure}[H]
+\includegraphics[width=7in, height=4.5in]{Fig4}
+\caption{Crank Nicolson Discretization }
+\end{figure}
+\item The Crank-Nicolson method is more stable than the first two cases (due to its unconditional stability). 
+\item There are small numerical errors, in case of Crank-Nicolson, as can be seen from the plot, (it crosses the z-axis at several places, though very slightly) which make it slightly less accurate than Backward-Euler. 
+\item { \bf The Crank Nicolson method is second order accurate in both time and space, and hence more accurate than Backward Euler}
+\item The Crank-Nicolson method is a combination of the Forward and Backward Euler methods. Hence, for the coarser step that we have considered, there is a small irregularity (non-smoothness) in the solution in the first step.  
+\end{itemize}\hrule
+\newpage
+\begin{itemize}
+\item The fifth plot corresponds to the semi-discrete method. The plot differs from the previous plots in the step size employed to solve the system. Since a library routine is used to solve the system of linear ODEs that result from the semi-discrete form, the time step is chosen automatically by the library routine \emph{scipy.integrate.odeint}. 
+\item {\bf The Semi-Discrete method results in a stiff ODE system.}
+\item The solution obtained from the Semi-Discrete Method is more stable than the explicit (Euler) method, however there is no considerable difference between the performance of the implicit methods (Backward-Euler and Crank-Nicolson).
+\begin{figure}[H]
+\includegraphics[width=7in, height=5in]{Fig5}
+\caption{Semi-Discrete Method }
+\end{figure}
+\end{itemize}\hrule\hrule\hrule
+\end{document}

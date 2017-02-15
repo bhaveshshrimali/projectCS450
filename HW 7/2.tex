@@ -1,0 +1,66 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 7}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule\hrule\hrule
+\section*{Solution 2: }
+Given ODE
+\begin{align*}
+u'' 
+=
+u^3 +t\ \ ; \ \ \ \ \ \ a<t<b
+\end{align*}
+subject to boundary conditions
+\begin{align*}
+u(a) = \alpha\ \ ; \ \ \ \ \ \ u(b) = \beta
+\end{align*}\hrule
+\subsection*{(a):}
+The Euler's method for an ODE 
+\begin{align*}
+{\bf y}' = {\bf f}(t,{\bf y})
+\end{align*}
+is illustrated via the iterative scheme given below:
+\begin{align}
+{\bf y}_{i+1} 
+=
+{\bf y}_i
++ h\cdot{\bf f}(t_i,{\bf y}_i)
+\label{Eq1}
+\end{align}
+Let $u'(a) = s$, hence for a single step 
+\begin{align*}
+& h=b-a\ \ ; \ \ \ \ \ \ \ t_i = a\ \ ; \ \ \ \ \ \  {\bf y}_0 = \begin{Bmatrix}\alpha\\s \end{Bmatrix}; \ \ \ \ \ {\bf y}_{1} = \begin{Bmatrix}\beta\\u'_{1} \end{Bmatrix}
+\end{align*}
+Rewriting the system of equations in the iterative form given by 
+(\ref{Eq1})
+\begin{align*}
+\begin{bmatrix}
+\beta\\u'_{1}
+\end{bmatrix}
+=
+\begin{Bmatrix}
+\alpha\\s
+\end{Bmatrix}
++ (b-a)\cdot
+\begin{Bmatrix}
+s\\a+\alpha^3
+\end{Bmatrix}
+\end{align*}
+Thus the algebraic relation for the initial slope, to be determined, is given by:  
+\begin{align*}
+\boxed{
+ \bf {\bm\beta} = {\bm\alpha} + (b-a) s
+}
+\end{align*}
+\subsection*{(b):}
+The initial value of the slope obtained from a single step of Euler's method is the slope of the {\bf straight-line} joining the end points (the independent variable ($t$) and the value of the solution at those points $u(t)$ of the domain. 
+\begin{align*}
+\boxed{
+{\bf s}
+=
+\frac{\bm \beta - \bm \alpha}{\bf b -a}
+}
+\end{align*}
+\end{document}

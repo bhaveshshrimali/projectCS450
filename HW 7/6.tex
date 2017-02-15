@@ -1,0 +1,146 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 7}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle\hrule\hrule\hrule
+\section*{Solution 6: Sparse Linear Systems:}
+The general pattern of the matrices, that are obtained from a Finite-Difference Discretization of the Laplace's Equation, is sparse and in particular tridiagonal, block-tridiagonal and so on. For the present case, we consider the Laplace's equation in 1-D, 2-D and 3-D.
+\subsection*{(a): 1-D Laplace (d=1, k)}
+\begin{align*}
+u_{xx} = 0 \implies u_{i+1} - 2u_i + u_{i-1} = 0
+\end{align*}
+Consider the degrees of freedom as:
+\begin{align*}
+{\bf u}
+=
+\begin{Bmatrix}
+u_0\\u_1\\u_2\\u_3\\u_4
+\end{Bmatrix}
+\end{align*}
+Since $u_0$ and $u_4$ are the boundary values, they would eventually move to the right side of the equation, and thus we need to consider only the remaining degrees of freedom
+\begin{align*}
+{\bf A}{\bf u} = \begin{bmatrix}
+-2 & 1 & 0 \\
+1 & -2 & 1\\
+0 & 1 & -2
+\end{bmatrix}
+\begin{Bmatrix}
+u_1\\u_2\\u_3
+\end{Bmatrix}
+\end{align*}
+This is the basic block matrix which would be appended into the larger system of equations, depending upon the number of degrees of freedom and thus the resulting system, as can be seen would be tridiagonal.
+\begin{align*}
+{\bf A} = 
+\begin{bmatrix}[1.5]
+-2 & 1 & 0 & \cdots & 0\\
+1 & -2 & 1 & \cdots & 0 \\
+0 & 1 & -2 & \ddots & \vdots\\
+\vdots & \cdots & \ddots & \ddots & \vdots \\
+0 & \cdots & 1 & \cdots & 2 
+\end{bmatrix}
+\end{align*}\hrule
+\subsection*{(b): 2-D Laplace (d=2, k)}
+The 2-D grid can be thought of as a 1-D grid of 1-D grids and therefore the Matrix is expected to be block-tridiagonal. The discretization scheme for  
+\begin{align*}
+u_{xx}
++ 
+u_{yy}
+=
+0
+\end{align*}
+a uniform mesh can be given by:
+\begin{align*}
+u^j_{i+1} - 2u^j_{i} + u^j_{i-1}
++ 
+u^{j+1}_{i} - 2u^j_{i} + u^{j-1}_{i}
+=
+0 \implies u^j_i = \frac{1}{4} \left( u^j_{i+1} +  u^j_{i-1} + u^{j+1}_{i} + u^{j-1}_{i}
+\right)
+\end{align*}
+The block matrix can be given by: 
+\begin{align*}
+{\bf B} = \begin{bmatrix}[1.5]
+-4 & 1 & 0 \\
+1 & -4 & 1 \\
+0 & 1 & -4
+\end{bmatrix} \ \ ; \ \ \ \ \ \ 
+{\bf 1} 
+=
+\begin{bmatrix}[1.5]
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+\begin{align*}
+{\bf A} = \begin{bmatrix}[1.5]
+{\bf B}  & {\bf 1} & \bf 0 & \bf 0\\
+{\bf 1} & {\bf B} & {\bf 1} & \bf 0\\
+\bf 0 & \ddots & \ddots & {\bf 1}\\
+\bf 0 & \cdots & {\bf 1} & {\bf B}
+\end{bmatrix}
+\end{align*}
+Here the outer matrix is of order $k^2$ comprised of $k$ diagonal blocks each of which is of order $k$. Here the individual blocks have been presented for a special case of k = 3.\\
+\hrule
+\subsection*{(c) 3-D Laplace Equation (d=3, k): }
+The 3-D grid can further be thought of as a 1-D grid of 2-D grids. Therefore the matrix is expected to be block (block) tridiagonal. The discretization scheme for:  
+\begin{align*}
+u_{xx} + u_{yy} + u_{zz} = 0
+\end{align*}
+can be given by: 
+\begin{align*}
+& u^{j,k}_{i+1} - 2  u^{j,k}_{i} + u^{j,k}_{i-1} + u^{j+1,k}_i - 2u^{j,k}_i + u^{j-1,k}_i +  u^{j,k+1}_i - 2u^{j,k}_i + u^{j,k-1}_i = 0 \\
+\implies 
+& 
+u^{j,k}_i 
+=
+\frac{1}{6}
+\left(
+u^{j,k}_{i+1} + u^{j,k}_{i-1} + u^{j+1,k}_i + u^{j-1,k}_i +  u^{j,k+1}_i + u^{j,k-1}_i
+\right)
+\end{align*}
+Here $u^{j,k}_i$ denote the value of the approximate finite difference solution at the mesh point ($x_i,y_j,z_k$). Hence the pattern of the nonzero entries in the matrix would be as follows: 
+\begin{align*}
+{\bf A} = \begin{bmatrix}[1.5]
+{\bf C}  & {\bf I} & \bf 0 & \bf 0\\
+{\bf I} & {\bf C} & {\bf I} & \bf 0\\
+\bf 0 & \ddots & \ddots & {\bf I}\\
+\bf 0 & \cdots & {\bf I} & {\bf C}
+\end{bmatrix}
+\end{align*}
+where each block matrix is given by 
+\begin{align*}
+{\bf C} = \begin{bmatrix}[1.5]
+{\bf B}  & {\bf 1} & \bf 0 & \bf 0\\
+{\bf 1} & {\bf B} & {\bf 1} & \bf 0\\
+\bf 0 & \ddots & \ddots & {\bf 1}\\
+\bf 0 & \cdots & {\bf 1} & {\bf B}
+\end{bmatrix} \ \ ; \ \ \ \ \ \ 
+{\bf I} 
+=
+\begin{bmatrix}[1.5]
+{\bf 1}  & {\bf 0} & \bf 0 & \bf 0\\
+{\bf 0} & {\bf 1} & {\bf 0} & \bf 0\\
+\bf 0 & \ddots & \ddots & {\bf 0}\\
+\bf 0 & \cdots & {\bf 0} & {\bf 1}
+\end{bmatrix}
+\end{align*}
+where further each of the block matrices are: 
+\begin{align*}
+{\bf B} = \begin{bmatrix}[1.5]
+-6 & 1 & 0 \\
+1 & -6 & 1 \\
+0 & 1 & -6
+\end{bmatrix} \ \ ; \ \ \ \ \ \ 
+{\bf 1} 
+=
+\begin{bmatrix}[1.5]
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+Thus the outer matrix would in general be of the order $k^3$, each having a diagonal of $k$ blocks and each block further being of the order  $k^2$ and further composed of $k$ blocks each of which is of order $k$. Here the individual blocks have been given for the special case of k = 3. \\ \hrule\hrule\hrule
+\end{document}
