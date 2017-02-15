@@ -1,0 +1,100 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 4}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution 4:}
+Given function
+\[
+f(x,y)
+=
+\frac{1}{2}(x^2_1 - x_2)^2 + \frac{1}{2} (1-x_1)^2
+\]
+\subsection*{(a): }
+The critical points of the given function are given by 
+\begin{align*}
+\bm\nabla f = 
+\begin{Bmatrix}
+x_1 - 2x_1(x_2-x^2_1) -1 \\
+x_2 - x^2_1
+\end{Bmatrix} = \begin{Bmatrix}
+0\\0
+\end{Bmatrix}\implies (x_1,x_2) = \begin{bmatrix}
+\left\{
+1,1
+\right\}
+\end{bmatrix}
+\end{align*}
+The hessian matrix, $\bf{H}(x,y)$, is given by
+\begin{align*}
+\begin{bmatrix}
+6x^2_1 - 2x_2 + 1 & -2x_1\\
+-2x_1 & 1
+\end{bmatrix}
+\end{align*}
+The hessian matrix evaluated at the critical point $(1,1)$ is
+\[
+{\bf H} (1,1)
+=
+\begin{bmatrix}
+5 & -2 \\
+-2 & 1
+\end{bmatrix}
+\]
+The corresponding eigenvalues are given by
+\begin{align*}
+\begin{vmatrix}
+5-\lambda & -2 \\
+-2 & 1-\lambda
+\end{vmatrix} = 0 \implies \lambda_1 = 0.1716\ ; \ \ \ \lambda_2 = 5.8284
+\end{align*}
+Thus the hessian matrix is positive definite implying that the point $(1,1)$ is a local minimum. \\ \hrule
+\subsection*{(b): }
+The corresponding iteration is described as follows: 
+\begin{align*}
+{\bf H}_f({\bf x}_k) s_k = -\nabla f({\bf x}_k) \\
+-\nabla f({\bf x}_k) = 
+\begin{bmatrix}
+-9\\2
+\end{bmatrix}\ ; \ \ \ \ {\bf H}_f({\bf x}_k) = 
+\begin{bmatrix}
+21 & -4 \\ -4 & 1
+\end{bmatrix}
+\end{align*}
+which gives
+\begin{align*}
+s_k
+=
+\begin{bmatrix}
+-0.2\\1.2
+\end{bmatrix}
+\end{align*}
+thus 
+\begin{align*}
+x_{k+1}
+=
+\begin{Bmatrix}
+1.8\\3.2
+\end{Bmatrix}
+\end{align*}\hrule
+\subsection*{(c): }
+In order to see if it is a good step, we compute 
+\begin{align*}
+\nabla f({\bf x}_k)^Ts_k
+= -4.2 < 0
+\end{align*}
+The vector obtained after the first iteration does come close to the true solution in one of the components. Hence it is a good step in the sense of descent direction. \\ \hrule 
+\subsection*{(d): }
+While we know that the exact solution to the problem is $x = [1.0,\  1.0]^T$, the last iteration in Newton's method, though bringing $x_1$ close to it's exact solution, takes $x_2$ farther than the initial guess. Hence in this sense it is a bad step. We can also compute the Euclidean norm of the difference between the true solution and current iterate. 
+\begin{align*}
+||x_1 - x||_{2}
+& =
+\sqrt{2}\\
+||x_2 - x||_{2}
+& =
+\sqrt{5.48}
+\end{align*}
+which clearly indicates that the euclidean norm of the distance increases. Hence it is a bad step. \\ \hrule \hrule \hrule 
+\end{document}
