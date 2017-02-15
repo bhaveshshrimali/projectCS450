@@ -1,0 +1,49 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 3}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution (4): }
+Given Equation
+\[
+x^2-3x+2
+\]
+Corresponding choices of functions for fixed point iterations: 
+\begin{align*}
+g_1(x) & = (x^2+2)/3 \\
+g_2(x) & = \sqrt{3x-2}\\
+g_3(x) & = 3-2/x\\
+g_4(x) & = (x^2-2)/(2x-3)
+\end{align*}
+\subsection*{(a):}
+\begin{align*}
+g_1(x) 
+=
+(x^2+2)/3\ ; \ \ \ g'_1(x) = \frac{2x}{3}\ ; \ \ \ |g'_1(2)| = \frac{4}{3} \nless 1
+\end{align*}
+Thus the fixed point iteration corresponding to this function, diverges. \\ \hrule
+\subsection*{(b):}
+\begin{align*}
+g_2(x) 
+=
+\sqrt{3x-2}\ ; \ \ \ g'_2(x) = \frac{3}{2\sqrt{3x-2}}\ ; \ \ \ |g'_2(2)| = \frac{3}{4} < 1
+\end{align*}
+Since the derivative of the function, $g'_2(x)$, does not vanish at $x=2$, it has a linear convergence rate with the constant $C=3/4$. \\ \hrule
+\subsection*{(c): }
+\begin{align*}
+g_3(x)
+=
+3-2/x\ ; \ \ \ g'_3(x) = \frac{2}{x^2}\ ; \ \ \ |g'_3(2)| = \frac{1}{2} < 1
+\end{align*}
+Again, in this case the derivative of the function $g_3(x)$, evaluated at 2, does not vanish and hence the convergence rate is linear with $C=\frac{1}{2}$. \\ \hrule
+\subsection*{(d): }
+\begin{align*}
+g_4(x) & = (x^2-2)/(2x-3)\ ; \ \ \ g'_4(x) = \frac{2x^2-6x+4}{{2x-3}^2} = \frac{2 (x-2)(x-1)}{{2x-3}^2}\ ; \ \ \ |g'_4(2)| = 0 
+\end{align*}
+Here the derivative of the function $g_4(x)$ vanishes at $x=2$, and hence  it ensures that there is at-least quadratic convergence. 
+\subsubsection*{Note: }
+It is assumed that the starting guess, for Newton's Method, is close enough for the above asymptotic convergence rates to hold valid. \\
+\hrule \hrule \hrule
+\end{document}

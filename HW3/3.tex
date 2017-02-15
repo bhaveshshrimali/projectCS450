@@ -1,0 +1,118 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 3}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution 2:}
+Given Matrix: 
+\[
+{\bf A} = 
+\begin{bmatrix}
+1 & 4 \\
+1 & 1 
+\end{bmatrix}
+\]
+\subsection*{(a):}The characteristic polynomial of ${\bf A}$ is given by: 
+\begin{align*}
+\det ({\bf A} - \lambda {\bf I}) = 
+\begin{vmatrix}
+1-\lambda & 4 \\
+1 & 1-\lambda
+\end{vmatrix} = 0 \\
+\implies (\lambda - 1)^2 - 4 = 0\\
+\lambda^2 - 2\lambda - 3 = 0
+\end{align*}\hrule
+\subsection*{(b):}
+Roots of the characteristic polynomial are
+\[
+\lambda = -1 ,3 
+\]\hrule
+\subsection*{(c):}
+The eigenvalues of the matrix ${\bf A}$ are the roots of the characteristic polynomial, i.e. $\lambda_1 = -1,\ \lambda_2 = 3$ \\ \hrule
+\subsection*{(d):}
+The Eigen-vectors of $\bf A$ are calculated as follows:
+\subsubsection*{$\cdot$ Corresponding to $\lambda = -1$:}
+Note that the eigen-vectors, in this case, have been normalized in the $L^\infty$ norm. 
+\begin{align*}
+& ({\bf A} + {\bf I})\ {\bf x} = {\bf 0} \\
+& \begin{bmatrix}
+2 & 4 \\
+1 & 2
+\end{bmatrix}
+\begin{Bmatrix}
+\phi_1 \\ \phi_2
+\end{Bmatrix} = {\bf 0}\ ;\ \ \ \text{also}\ \ \ \max_i{\phi_i} = 1 \\ \\
+& \begin{Bmatrix}
+\phi_1 \\ \phi_2
+\end{Bmatrix} = 
+\begin{Bmatrix}
+1	\\ -0.5
+\end{Bmatrix}
+\end{align*}
+\subsubsection*{$\cdot$ Corresponding to $\lambda = 3$}
+\begin{align*}
+& ({\bf A} -3 {\bf I})\ {\bf x} = {\bf 0} \\
+& \begin{bmatrix}
+-2 & 4 \\
+1 & -2
+\end{bmatrix}
+\begin{Bmatrix}
+\phi_3 \\ \phi_4
+\end{Bmatrix} = {\bf 0}\ ;\ \ \ \text{also}\ \ \ \max_i \phi_i = 1 \\ \\
+& \begin{Bmatrix}
+\phi_3 \\ \phi_4
+\end{Bmatrix} = 
+\begin{Bmatrix}
+1 \\ 0.5
+\end{Bmatrix}
+\end{align*}\hrule
+\subsection*{(e):}
+Given Vector
+\[{\bf x}_0
+\begin{Bmatrix}
+1 \\ 1
+\end{Bmatrix}
+\]
+Thus, the first iteration of the power iteration is as follows. Note that in this particular case, we normalize the Eigen-vector obtained below, in the $L^\infty$ norm, and hence 
+\begin{align*}
+& {\bf A}{\bf x}_0
+={\bf x}_1 = 
+\begin{Bmatrix}
+1 \\ 0.4
+\end{Bmatrix}
+\end{align*}\hrule
+\subsection*{(f): }
+The power iteration will converge to the eigen-vector corresponding to the dominant eigenvalue of $\bf A$ ($\lambda = 3$), which is shown as below
+\begin{align*}
+& {\bf A}{\bf x}_1
+={\bf x}_2 = {\bf x}_2/{\Linorm{{\bf x}_2}} = \frac{1}{2.6}
+\begin{Bmatrix}
+2.6 \\ 1.4
+\end{Bmatrix}
+= \begin{Bmatrix}
+1\\0.54
+\end{Bmatrix} \\ \\
+& {\bf A}{\bf x}_2
+={\bf x}_3/{\Linorm{{\bf x}_3}} = \frac{1}{3.16}
+\begin{Bmatrix}
+3.16 \\ 1.54
+\end{Bmatrix}= \begin{Bmatrix}
+1\\0.487
+\end{Bmatrix}
+\end{align*}
+Thus we can easily see that the eigenvector is converging to the one, corresponding to $\lambda = 3$ as obtained in the part (d). Here the procedure of normalization has been carried out, to implement power-iteration, with respect to the $L^\infty$ norm of the vector. The same could be carried out using the $L^2$ norm as well, just that the $L^\infty$ norm is less expensive to determine. \\ \hrule
+\subsection*{(g): }
+Using the Rayleigh quotient iteration: 
+\begin{align*}
+\sigma & = \frac{{\bf x}^T {\bf A}{\bf x}}{{\bf x}^T {\bf x}}\\
+\implies \sigma & = \frac{7}{2} = 3.5
+\end{align*}\hrule
+\subsection*{(h): }
+The inverse iteration would converge to the eigenvector corresponding to the smallest (in absolute value) eigenvalue of $\bf A$ and hence it would converge to the eigenvector corresponding to $\lambda = -1$. \\ \hrule
+\subsection*{(i): }
+Inverse-iteration with shift $=2$ would return the eigenvalue closest to the shift, i.e. 3. \\ \hrule
+\subsection*{(j): }
+Since the matrix is general (non-symmetric), using the Q-R iteration would result in A converging to a triangular matrix. 
+\end{document}

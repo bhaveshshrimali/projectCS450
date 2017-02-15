@@ -1,0 +1,34 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 3}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution (6): }
+The Newton's method for computing the square root of a number can be formulated as follows.
+\[
+f(x) = x^2 - y
+\]
+\subsection*{(a): }
+\begin{itemize}
+\item Choose a sample input, say $y$, whose square root is to be found 
+\item Start the iteration, with an initial trial, say $x_0$, then $x_{k+1} = F(x_k)$ and repeat till the root is within a specified tolerance 
+\end{itemize} 
+The Newton's method is equivalent to a fixed point iteration problem where the function $g(x)$ is determined using the approximation of the function by the tangent at the iteration point. 
+\begin{align*}
+x_{k+1}
+& =
+x_k - \frac{f(x)}{f'(x)} \\ 
+& = x_k - \frac{x_k^2-y}{2x_k}
+\end{align*}\hrule
+\subsection*{(b): }
+Since Newton's method for finding the square root, provided that $y\neq 0$, would not have $f'(x) = 0$, at $x=x_{sol}$, where $x_{sol}$ is the exact root, we can safely assume that it is going to have quadratic convergence. Thus the number of accurate digits in the approximate solution doubles at each iteration
+\begin{itemize}
+\item First Iteration: $8$ bits
+\item Second Iteration: $2\cdot 8$ bits = $16$ bits
+\item Third Iteration: $2\cdot 16$ bits = $32$ bits   $\bm\leftarrow$ corresponding to {\bf 24}. 
+\item Fourth Iteration: $2 \cdot 32$ bits = $64$ bits   $\bm\leftarrow$ corresponding to {\bf 53}.  
+\end{itemize} 
+Hence it takes $3$ and $4$ iterations for getting an accuracy of $24$ bits and $53$ bits respectively
+\end{document}
