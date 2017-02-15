@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.65in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{authblk}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{pgfplotstable}
+
+\titlespacing\section{10pt}{14pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{8pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\graphicspath{{Final_Project/FEMProject/Results/}}
+\title{\bf CSE 401: Numerical Analysis - Fall 2016 \\ Homework 1}
+\author{Bhavesh Shrimali (NetID: bshrima2)}
+\begin{document}
+\maketitle
+\section*{Problem 7}
+\noindent 
+\subsection*{1}
+The determinant of the matrix is given as
+\[
+\begin{vmatrix}
+    1 & 1+{\epsilon} \\
+    1-{\epsilon} & 1  
+\end{vmatrix}
+ = {\epsilon}^2
+\]
+\subsection*{2}
+It can be readily seen from the calculation of the determinant that the corresponding range required on $\epsilon$
+\begin{align}
+ -\epsilon_{mach} < \epsilon < \epsilon_{mach}
+\label{eqn1}
+\end{align}
+where $\epsilon_{mach}$ denotes the machine epsilon. It can be seen that for all values satisfied by (\ref{eqn1}) the matrix would indeed be stored as 
+\[
+\begin{bmatrix}
+    1 & 1 \\
+    1 & 1  
+\end{bmatrix}
+\]
+which is singular. 
+\subsection*{3} The L-U Factorization can be readily computed knowing that all the diagonal entries in L are equal to 1.
+This permits the following representation for L and U respectively
+\[
+{\bf L} = 
+\begin{bmatrix}
+    1 & 0 \\
+    \dots & 1  
+\end{bmatrix}
+\text{ and {\bf U} = }
+\begin{bmatrix}
+ 	\dots & \dots \\
+    0 & \dots  
+\end{bmatrix}
+\]
+Now we start with the given matrix ({\bf A}) and try to reduce it to {\bf U}:
+\[
+{\bf A} = 
+\begin{bmatrix}
+    1 & 1+{\epsilon} \\
+    1-\epsilon & 1  
+\end{bmatrix}
+\]
+Now $R_2 \rightarrow R_2 + (\epsilon -1)\cdot R_1$ which gives, as per rule,
+\[
+{\bf U} = 
+\begin{bmatrix}
+1 & 1+\epsilon\\
+0 & {\epsilon}^2
+\end{bmatrix}
+\text{ and } {\bf L }
+= 
+\begin{bmatrix}
+1 &0\\
+1-\epsilon &1
+\end{bmatrix}
+\]
+\subsection*{4}
+The computed value of {\bf U} would be singular whenever ${\epsilon}^2$ is less than $\epsilon_{mach}$ that is,
+\begin{align*}
+- \sqrt{\epsilon_{mach}} < \epsilon < \sqrt{\epsilon_{mach}}
+\label{eqn3}
+\end{align*}
+Note: The above inequality holds true for a given {\bf U} i.e. if given a {\bf U} then the only way it can be singular is when (\ref{eqn3}) holds. If epsilon ($\epsilon$) is assumed to be strictly positive then we can ignore the negative part of the inequality, i.e. 
+\begin{align}
+0 \leq \epsilon < \sqrt{\epsilon_{mach}}
+\end{align}
+Now if U is reduced from the given {\bf A} then in the very first step when {\bf A} is stored, it is singular if the epsilon($\epsilon$) chosen is such that it is less than the machine epsilon ($\epsilon_{mach}$) and corresponding {\bf U} is also singular. To summarize:
+\begin{itemize}
+\item If it is the computed {\bf U} as the only thing we need to be concerned about, disregarding any previous calculations, then
+\begin{align}
+0 \leq \epsilon < \sqrt{\epsilon_{mach}}
+\end{align}
+\item If we are concerned about determining {\bf U} from the given {\bf A} and all the steps involved therein, then 
+\begin{align}
+0 \leq \epsilon < \epsilon_{mach}
+\end{align}
+Because if $\epsilon$ is less than $\epsilon_{mach}$ then {\bf A} becomes singular and correspondingly {\bf U} obtained from {\bf A} is singular
+\end{itemize}
+\end{document}
