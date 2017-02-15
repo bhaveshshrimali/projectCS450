@@ -1,0 +1,45 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 5}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution 3:}
+Give $n$ points to be interpolated with a piecewise quadratic polynomial such that it is: 
+\subsection*{(a) Once Continuously differentiable}
+We proceed with the discussion by counting the number of unknowns ($n_s$) and the number of equations ($n_{eq}$) available to solve the system. It is noted that for $n$ points the number of curves required is $n-1$
+\begin{itemize}
+\item For the present case, the number of unknowns is the parameters of each of the piece-wise quadratic
+\begin{align*}
+n_s = 3\cdot(n-1)
+\end{align*}
+\item And the number of equations are the values of the resulting polynomial at the knots and one equation per three knots for the additional continuity of the derivative. (Except for the first and the last knot)
+\begin{align*}
+n_{eq} = 2\cdot(n-1) + (n-2)
+\end{align*}
+\item The difference between the number of unknowns and the equations is given by $n_s - n_{eq} = 1 > 0$. Hence there is { \bf one free parameter}. Therefore the solution always exists. {\bf Yes it is always possible to interpolate n points with a piecewise quadratic interpolant which is once continuously differentiable. } Hence it is always possible to fit a piece-wise quadratic polynomial which is once continuously differentiable, except that this { \bf resulting interpolant is not unique}. 
+\end{itemize} \hrule
+ 
+\subsection*{(a) Twice Continuously differentiable}
+We proceed with the discussion by counting the number of unknowns ($n_s$) and the number of equations ($n_{eq}$) available to solve the system. It is noted that for $n$ points the number of curves required is $n-1$
+\begin{itemize}
+\item For the present case, the number of unknowns is the parameters of each of the piece-wise quadratic
+\begin{align*}
+n_s = 3\cdot(n-1)
+\end{align*}
+\item And the number of equations are the values of the resulting polynomial at the knots and one equation per three knots for the additional continuity of the derivative. Additionally we also need to enforce the condition on the second derivative. (Except for the first and the last knot)
+\begin{align*}
+n_{eq} = 2\cdot(n-1) + (n-2) + (n-2) = 4n-6
+\end{align*}
+\item The difference between the number of unknowns and the equations is given by $n_s - n_{eq} = -n+3 > 0\implies n<3$. Hence it is not always possible to locate a piecewise quadratic interpolant whih is twice continuously differentiable. It is only possible when
+\begin{itemize}
+\item $n\leq 3$. For $n<3$ no unique solution and for $n=3$ a unique solution. 
+\begin{align}
+\boxed{\text{\bf Thus the highest value of n for which it is possible is 3}}
+\end{align}
+\item For $n>3$, the number of parameters are less than the number of equations required to uniquely solve the system. Hence there exists no solution, or in other words there is no quadratic interpolant that can pass through $n$ points, for $n>3$ such that it is twice-continuously differentiable. 
+\end{itemize}
+\end{itemize}\hrule\hrule\hrule
+
+\end{document}

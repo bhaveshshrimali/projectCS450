@@ -1,0 +1,139 @@
+\input{commands}
+\title{\bf CSE 401: Numerical Analysis \\ HW 5}
+\author{Bhavesh Shrimali \\ NetID: bshrima2}
+\date{\today}
+\titlespacing*{\title}{-2ex}{*-2ex}{-2ex}
+\begin{document}
+\maketitle \hrule \hrule \hrule
+\section*{Solution 2:}
+Given data points 
+\begin{align*}
+(-1,1),(0,0),(1,1)
+\end{align*}
+\subsection*{Using Monomial Basis function: }
+The monomial basis functions are given by the following formula
+\begin{align*}
+\phi_k(x) = x^{k-1} \implies \phi_1(x)  = 1\ ;\ \ \phi_2(x)  = x\ ;\ \ \ \phi_3(x)  = x^2\ \ \ \  
+\end{align*}
+And the corresponding Vandermonde matrix is given by
+\begin{align*}
+{\bf V} = 
+\begin{bmatrix}
+1 & -1 & 1 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{bmatrix}
+\end{align*}
+Let the corresponding weights be denoted by $w_1$, $w_2$, $w_3$ and therefore we get the corresponding linear system 
+\begin{align*}
+\begin{bmatrix}
+1 & -1 & 1 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{bmatrix}
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} = 
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}
+\implies 
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} =
+\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}
+\end{align*}
+Hence the interpolating polynomial 
+\begin{align*}
+\boxed{m(x) = x^2}
+\end{align*}\hrule
+
+
+\subsection*{Using Lagrange Basis functions: }
+The lagrange basis functions are given by the following formula
+\begin{align*}
+\phi_k(x) = \prod_{j=1,j \neq k}^{j=n} \frac{x-x_j}{x_k-x_j} \implies \phi_1(x)  = \frac{(x)(x-1)}{2}\ ;\ \ \phi_2(x)  = (x+1)(x-1)\ ;\ \ \ \phi_3(x)  = \frac{(x+1)(x)}{2}\ \ \ \  
+\end{align*}
+And the corresponding Coefficient matrix is given by
+\begin{align*}
+{\bf V} = 
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+Let the corresponding weights be denoted by $w_1$, $w_2$, $w_3$ and therefore we get the corresponding linear system 
+\begin{align*}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} = 
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}
+\implies 
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} =
+\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}
+\end{align*}
+Hence the interpolating polynomial 
+\begin{align*}
+\boxed{m(x) = \frac{(x-1)(x)}{2} + \frac{(x+1)(x)}{2} = x^2}
+\end{align*}\hrule
+
+
+
+
+\subsection*{Using Newton Basis functions: }
+The newton basis functions are given by the following formula
+\begin{align*}
+\phi_k(x) = \prod_{j=1}^{k-1} (x-x_k) \implies \phi_1(x)  = 1\ ;\ \ \phi_2(x)  = x+1\ ;\ \ \ \phi_3(x)  = (x)(x+1)\ \ \ \  
+\end{align*}
+And the corresponding Coefficient matrix is given by
+\begin{align*}
+{\bf V} = 
+\begin{bmatrix}
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 2 & 2
+\end{bmatrix}
+\end{align*}
+Let the corresponding weights be denoted by $w_1$, $w_2$, $w_3$ and therefore we get the corresponding linear system 
+\begin{align*}
+\begin{bmatrix}
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 2 & 2
+\end{bmatrix}
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} = 
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}
+\implies 
+\begin{Bmatrix}
+w_1 \\ w_2 \\ w_3
+\end{Bmatrix} =
+\begin{bmatrix}
+1\\-1\\1
+\end{bmatrix}
+\end{align*}
+Hence the interpolating polynomial 
+\begin{align*}
+m(x) & = 1\cdot1 -1\cdot(x+1)+1\cdot(x^2+x) = 1-x-1+x^2+x 
+\\ & \boxed{ = x^2}
+\end{align*}\hrule
+\subsection*{Remarks: }
+It can be seen that all of the above basis functions give a unique polynomial. This follows from the fact that the interpolant of degree $n-1$ to $n$ data points is unique and hence all the three methods should give a unique polynomial. Thus for '3' points a polynomial of degree '2' should be unique, and this is verified above. 
+\end{document}
